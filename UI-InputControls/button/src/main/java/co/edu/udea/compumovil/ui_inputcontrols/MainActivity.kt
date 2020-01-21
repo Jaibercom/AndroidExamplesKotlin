@@ -7,14 +7,14 @@ import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var textView: TextView
+    private lateinit var message: TextView
     private var count = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        textView = findViewById(R.id.text_message)
+        message = findViewById(R.id.text_message)
         updateUI()
     }
 
@@ -34,6 +34,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateUI() {
-        textView.text = this.getString(R.string.text_message, count)
+        message.text = this.getString(R.string.text_message, count)
     }
 }
