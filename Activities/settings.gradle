@@ -1,0 +1,2 @@
+include ':lifecycle', ':savingstate'
+rootProject.name='Activities'

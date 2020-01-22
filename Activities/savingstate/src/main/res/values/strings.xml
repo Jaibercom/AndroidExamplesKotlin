@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Saving Activity State</string>
+
+    <string name="onCreate">onCreate() calls: 0</string>
+    <string name="onStart">onStart() calls: 0</string>
+    <string name="onResume">onResume() calls: 0</string>
+    <string name="onRestart">onRestart() calls: 0</string>
+
+    <string name="message">%s calls: %d</string>
+</resources>
