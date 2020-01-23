@@ -3,15 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#BAD2F0"
-    tools:context=".FragmentA">
+    android:background="#C3F0BA"
+    tools:context=".FragmentB">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="20dp"
         android:gravity="center"
-        android:text="@string/hello_fragment_a"
+        android:text="@string/hello_fragment_b"
         android:textSize="30sp" />
 
 </FrameLayout>

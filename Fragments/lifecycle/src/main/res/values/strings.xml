@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Fragments</string>
 
-    <string name="hello_blank_fragment">Hello Fragment</string>
     <string name="hello_activity">Hello Activity</string>
+    <string name="hello_fragment_a">Hello Fragment A</string>
+    <string name="hello_fragment_b">Hello Fragment B</string>
 </resources>
