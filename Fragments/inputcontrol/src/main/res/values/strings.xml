@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">InputControl</string>
+
+    <string name="text_message">Se ha presionado: \n%1$d veces</string>
+    <string name="clear_button_text">Borrar</string>
+    <string name="count_button_text">Contar !!</string>
+</resources>

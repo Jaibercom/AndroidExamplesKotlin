@@ -1,2 +1,2 @@
-include ':lifecycle'
+include ':lifecycle', ':inputcontrol'
 rootProject.name='Fragments'
