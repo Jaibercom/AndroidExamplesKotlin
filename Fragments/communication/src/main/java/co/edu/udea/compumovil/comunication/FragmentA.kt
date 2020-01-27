@@ -39,13 +39,12 @@ class FragmentA : Fragment(), View.OnClickListener {
     }
 
     override fun onClick(view: View?) {
-
         val name = editText.text.toString()
         Log.d(TAG, "onClick, your name is: $name")
 
         listener?.let {
             it.onFragmentClickButton(name)
-//            editText.setText("")
+            editText.setText("")
         }
     }
 
@@ -75,7 +74,7 @@ class FragmentA : Fragment(), View.OnClickListener {
      * for more information.
      */
     interface OnFragmentButtonListener {
-        fun onFragmentClickButton(name: String?)
+        fun onFragmentClickButton(name: String)
     }
 
     companion object {

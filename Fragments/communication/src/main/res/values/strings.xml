@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">Communication</string>
     <string name="write_your_name">Write your name</string>
+
+    <string name="message_name">Name: %s</string>
 </resources>

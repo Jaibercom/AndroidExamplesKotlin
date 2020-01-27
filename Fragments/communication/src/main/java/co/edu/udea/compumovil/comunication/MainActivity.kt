@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import co.edu.udea.compumovil.comunication.FragmentB.Companion.FRAGMENT_B_TAG
 
 class MainActivity : AppCompatActivity(), FragmentA.OnFragmentButtonListener {
 
@@ -20,8 +21,22 @@ class MainActivity : AppCompatActivity(), FragmentA.OnFragmentButtonListener {
         ft.commit()
     }
 
-    override fun onFragmentClickButton(name: String?) {
+    override fun onFragmentClickButton(name: String) {
         Log.d(TAG, "onClick, your name is: $name")
+
+        var fragmentB = supportFragmentManager.findFragmentByTag(FRAGMENT_B_TAG) as FragmentB?
+
+        if (fragmentB != null) {
+            fragmentB.setName(name)
+        } else {
+            Log.d(TAG, "Crear Fragment B")
+            fragmentB = FragmentB.newInstance(name)
+        }
+
+        val ft = supportFragmentManager.beginTransaction()
+        ft.replace(R.id.fragment_container, fragmentB, FRAGMENT_B_TAG)
+        ft.addToBackStack(null)
+        ft.commit()
     }
 
     companion object {
