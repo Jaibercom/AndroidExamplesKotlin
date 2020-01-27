@@ -20,6 +20,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
  */
 class FragmentA : Fragment(), View.OnClickListener {
 
+    private var listener: OnFragmentButtonListener? = null
     private lateinit var sendButton: FloatingActionButton
     private lateinit var editText: EditText
 
@@ -42,6 +43,39 @@ class FragmentA : Fragment(), View.OnClickListener {
         val name = editText.text.toString()
         Log.d(TAG, "onClick, your name is: $name")
 
+        listener?.let {
+            it.onFragmentClickButton(name)
+//            editText.setText("")
+        }
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is OnFragmentButtonListener) {
+            listener = context
+        } else {
+            throw RuntimeException("$context must implement OnFragmentInteractionListener")
+        }
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        listener = null
+    }
+
+    /**
+     * This interface must be implemented by activities that contain this
+     * fragment to allow an interaction in this fragment to be communicated
+     * to the activity and potentially other fragments contained in that
+     * activity.
+     *
+     *
+     * See the Android Training lesson [Communicating with Other Fragments]
+     * (http://developer.android.com/training/basics/fragments/communicating.html)
+     * for more information.
+     */
+    interface OnFragmentButtonListener {
+        fun onFragmentClickButton(name: String?)
     }
 
     companion object {
