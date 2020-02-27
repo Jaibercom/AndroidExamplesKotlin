@@ -1,16 +1,21 @@
 package co.edu.udea.compumovil.viewmodel.ui.counter
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class CounterViewModel : ViewModel() {
 
-    var counter = 0
+    val counter = MutableLiveData<Int>()
+
+    init {
+        counter.value = 0
+    }
 
     fun onAdd(){
-        counter++
+        counter.value = counter.value?.plus(1)
     }
 
     fun onClear(){
-        counter = 0
+        counter.value = 0
     }
 }

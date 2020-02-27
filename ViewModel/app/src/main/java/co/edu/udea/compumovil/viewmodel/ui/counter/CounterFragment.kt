@@ -42,7 +42,7 @@ class CounterFragment : Fragment(), View.OnClickListener {
     }
 
     private fun updateUI() {
-        textMessage.text = activity!!.getString(R.string.text_message, counterViewModel.counter)
+        textMessage.text = activity!!.getString(R.string.text_message, counterViewModel.counter.value)
     }
 
     companion object {
