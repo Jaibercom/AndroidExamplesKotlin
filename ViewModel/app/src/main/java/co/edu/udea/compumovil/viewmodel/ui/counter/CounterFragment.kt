@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import co.edu.udea.compumovil.viewmodel.R
 import kotlinx.android.synthetic.main.counter_fragment.btnClear
@@ -28,7 +29,9 @@ class CounterFragment : Fragment(), View.OnClickListener {
         btnAdd.setOnClickListener(this)
         btnClear.setOnClickListener(this)
 
-        updateUI()
+        counterViewModel.counter.observe(viewLifecycleOwner, Observer { newCounter ->
+            textMessage.text = activity!!.getString(R.string.text_message, newCounter)
+        })
     }
 
     override fun onClick(view: View) {
@@ -38,11 +41,6 @@ class CounterFragment : Fragment(), View.OnClickListener {
 
             R.id.btnClear -> counterViewModel.onClear()
         }
-        updateUI()
-    }
-
-    private fun updateUI() {
-        textMessage.text = activity!!.getString(R.string.text_message, counterViewModel.counter.value)
     }
 
     companion object {
