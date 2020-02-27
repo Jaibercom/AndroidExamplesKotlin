@@ -39,7 +39,10 @@ class CounterFragment : Fragment(), View.OnClickListener {
         when (view.id) {
             R.id.btnAdd -> counterViewModel.onAdd()
 
-            R.id.btnClear -> counterViewModel.onClear()
+            R.id.btnClear -> {
+                counterViewModel.onClear()
+//                counterViewModel.counter.value = 3
+            }
         }
     }
 
