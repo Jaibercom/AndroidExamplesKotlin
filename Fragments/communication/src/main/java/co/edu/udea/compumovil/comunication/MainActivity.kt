@@ -5,9 +5,12 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import co.edu.udea.compumovil.comunication.FragmentA.OnFragmentButtonListener
 import co.edu.udea.compumovil.comunication.FragmentB.Companion.FRAGMENT_B_TAG
 
-class MainActivity : AppCompatActivity(), FragmentA.OnFragmentButtonListener {
+
+
+class MainActivity : AppCompatActivity(), OnFragmentButtonListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,13 +33,24 @@ class MainActivity : AppCompatActivity(), FragmentA.OnFragmentButtonListener {
             fragmentB.setName(name)
         } else {
             Log.d(TAG, "Crear Fragment B")
-            fragmentB = FragmentB.newInstance(name)
+            fragmentB = FragmentB.newInstance2(name)
         }
 
         val ft = supportFragmentManager.beginTransaction()
         ft.replace(R.id.fragment_container, fragmentB, FRAGMENT_B_TAG)
         ft.addToBackStack(null)
         ft.commit()
+    }
+
+    private fun createFragmentB(name: String): FragmentB {
+        val bundle = Bundle()
+        bundle.putString("ARG_NAME", name)
+        bundle.putInt("ARG_AGE", 33)
+
+        val fragment = FragmentB()
+        fragment.arguments = bundle
+
+        return fragment
     }
 
     companion object {

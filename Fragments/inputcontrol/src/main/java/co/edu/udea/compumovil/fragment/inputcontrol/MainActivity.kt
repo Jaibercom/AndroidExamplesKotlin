@@ -10,13 +10,22 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         // Create new fragment and transaction
-        val fragmentA = FragmentA()
+        val fragmentA = FragmentA.newInstance(146)
         val transaction = supportFragmentManager.beginTransaction()
 
-        // Replace whatever is in the fragment_container view with this fragment,
-        // and add the transaction to the back stack
-        transaction.add(R.id.fragment_container, fragmentA)
-        // Commit the transaction
-        transaction.commit()
+        transaction.apply {
+            // Replace whatever is in the fragment_container view with this fragment,
+            // and add the transaction to the back stack
+            replace(R.id.fragment_container, fragmentA, TAG)
+            // Commit the transaction
+            commit()
+        }
+
+        // Getting fragment dynamically
+//         val fragment = supportFragmentManager.findFragmentByTag(TAG)
+    }
+
+    companion object{
+        const val TAG = "TAG_FRAGMENT_A"
     }
 }

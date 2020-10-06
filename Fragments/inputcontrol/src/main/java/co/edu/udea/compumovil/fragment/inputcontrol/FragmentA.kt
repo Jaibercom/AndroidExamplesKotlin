@@ -11,25 +11,27 @@ import androidx.fragment.app.Fragment
 /**
  * A simple [Fragment] subclass.
  */
-class FragmentA : Fragment(), View.OnClickListener {
+class FragmentA : Fragment() {
 
     private lateinit var message: TextView
-    private lateinit var btnCount: Button
-    private lateinit var btnClear: Button
     private var count = 0
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let{
+            count = it.getInt(ARG_COUNT, 0)
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_a, container, false)
 
-        btnClear = view.findViewById(R.id.btn_clear)
-        btnCount = view.findViewById(R.id.btn_count)
-        btnClear.setOnClickListener(this)
-        btnCount.setOnClickListener(this)
+        view.findViewById<Button>(R.id.btn_clear).setOnClickListener { clear() }
+        view.findViewById<Button>(R.id.btn_count).setOnClickListener { add() }
 
         message = view.findViewById(R.id.text_message)
         updateUI()
@@ -37,22 +39,31 @@ class FragmentA : Fragment(), View.OnClickListener {
         return view
     }
 
-    override fun onClick(view: View) {
+    private fun add() {
+        count++
+        updateUI()
+    }
 
-        when (view.id) {
-
-            R.id.btn_count -> {
-                count++
-            }
-
-            R.id.btn_clear -> {
-                count = 0
-            }
-        }
+    private fun clear() {
+        count = 0
         updateUI()
     }
 
     private fun updateUI() {
-        message.text = activity!!.getString(R.string.text_message, count)
+        message.text = requireContext().getString(R.string.text_message, count)
+    }
+
+    companion object{
+        const val ARG_COUNT = "count"
+
+        fun newInstance(count: Int): FragmentA {
+            val bundle = Bundle()
+            bundle.putInt(ARG_COUNT, count)
+
+            val frag = FragmentA()
+            frag.arguments = bundle
+
+            return frag
+        }
     }
 }

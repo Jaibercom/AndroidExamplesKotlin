@@ -68,6 +68,6 @@ class FragmentA : Fragment() {
     }
 
     companion object {
-        private const val TAG = "FragmentA"
+        private const val TAG = "LifeCycle-Fragment"
     }
 }

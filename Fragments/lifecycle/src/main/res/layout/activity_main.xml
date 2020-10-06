@@ -22,21 +22,6 @@
         android:id="@+id/fragment_a"
         android:name="co.edu.udea.compumovil.fragments.FragmentA"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:gravity="center"
-        android:text="@string/hello_activity"
-        android:textSize="30sp" />
-
-    <fragment
-        android:id="@+id/fragment_b"
-        android:name="co.edu.udea.compumovil.fragments.FragmentB"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
+        android:layout_height="match_parent" />
 
 </LinearLayout>
