@@ -3,14 +3,20 @@ package co.edu.udea.compumovil.comunication
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import co.edu.udea.compumovil.comunication.FragmentA.OnFragmentButtonListener
+import co.edu.udea.compumovil.comunication.FragmentA.Companion.FRAGMENT_A_TAG
+import co.edu.udea.compumovil.comunication.FragmentA.OnFragmentAButtonListener
 import co.edu.udea.compumovil.comunication.FragmentB.Companion.FRAGMENT_B_TAG
 
 
-
-class MainActivity : AppCompatActivity(), OnFragmentButtonListener {
+/**
+ * A simple [Activity] subclass.
+ *
+ * author: Jaiber Yepes
+ */
+class MainActivity : AppCompatActivity(), OnFragmentAButtonListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,43 +24,39 @@ class MainActivity : AppCompatActivity(), OnFragmentButtonListener {
 
         val fragmentA = FragmentA.newInstance()
 
-        val fm: FragmentManager = supportFragmentManager
-        val ft: FragmentTransaction = fm.beginTransaction()
-        ft.add(R.id.fragment_container, fragmentA, FRAG_A_TAG)
-        ft.commit()
+        navigateTo(fragmentA, FRAGMENT_A_TAG)
     }
 
-    override fun onFragmentClickButton(name: String) {
+    override fun onClickButton(name: String) {
         Log.d(TAG, "onClick, your name is: $name")
 
         var fragmentB = supportFragmentManager.findFragmentByTag(FRAGMENT_B_TAG) as FragmentB?
 
         if (fragmentB != null) {
+            Log.d(TAG, "Fragment B creado")
             fragmentB.setName(name)
         } else {
             Log.d(TAG, "Crear Fragment B")
-            fragmentB = FragmentB.newInstance2(name)
+            fragmentB = FragmentB.newInstance(name)
         }
 
-        val ft = supportFragmentManager.beginTransaction()
-        ft.replace(R.id.fragment_container, fragmentB, FRAGMENT_B_TAG)
-        ft.addToBackStack(null)
-        ft.commit()
+        navigateTo(fragmentB, FRAGMENT_B_TAG, true)
     }
 
-    private fun createFragmentB(name: String): FragmentB {
-        val bundle = Bundle()
-        bundle.putString("ARG_NAME", name)
-        bundle.putInt("ARG_AGE", 33)
+    private fun navigateTo(fragment: Fragment, tag: String, backStack: Boolean = false) {
+        val fm: FragmentManager = supportFragmentManager
+        val ft: FragmentTransaction = fm.beginTransaction()
 
-        val fragment = FragmentB()
-        fragment.arguments = bundle
-
-        return fragment
+        ft.apply {
+            replace(R.id.fragment_container, fragment, tag)
+            if (backStack) {
+                addToBackStack(null)
+            }
+            commit()
+        }
     }
 
     companion object {
         private const val TAG = "MainActivity"
-        private const val FRAG_A_TAG = "FRAGMENT_A_TAG"
     }
 }
