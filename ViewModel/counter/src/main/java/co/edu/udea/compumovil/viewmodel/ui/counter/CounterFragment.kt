@@ -12,12 +12,14 @@ import kotlinx.android.synthetic.main.counter_fragment.btnClear
 import kotlinx.android.synthetic.main.counter_fragment.btnAdd
 import kotlinx.android.synthetic.main.counter_fragment.textMessage
 
-class CounterFragment : Fragment(), View.OnClickListener {
+class CounterFragment : Fragment() {
 
     lateinit var counterViewModel: CounterViewModel
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         return inflater.inflate(R.layout.counter_fragment, container, false)
     }
 
@@ -26,27 +28,19 @@ class CounterFragment : Fragment(), View.OnClickListener {
 
         counterViewModel = ViewModelProvider(this).get(CounterViewModel::class.java)
 
-        btnAdd.setOnClickListener(this)
-        btnClear.setOnClickListener(this)
+        btnAdd.setOnClickListener { onAdd() }
+        btnClear.setOnClickListener { onClear() }
 
-        counterViewModel.counter.observe(viewLifecycleOwner, Observer { newCounter ->
+        counterViewModel.getCounter().observe(viewLifecycleOwner, Observer { newCounter ->
             textMessage.text = activity!!.getString(R.string.text_message, newCounter)
         })
     }
 
-    override fun onClick(view: View) {
-
-        when (view.id) {
-            R.id.btnAdd -> counterViewModel.onAdd()
-
-            R.id.btnClear -> {
-                counterViewModel.onClear()
-//                counterViewModel.counter.value = 3
-            }
-        }
+    private fun onAdd() {
+        counterViewModel.onAdd()
     }
 
-    companion object {
-        fun newInstance() = CounterFragment()
+    private fun onClear() {
+        counterViewModel.onClear()
     }
 }
