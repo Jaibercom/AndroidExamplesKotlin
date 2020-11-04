@@ -4,13 +4,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.core.view.accessibility.AccessibilityEventCompat.setAction
 import androidx.recyclerview.widget.RecyclerView
 import co.edu.udea.compumovil.retrofit.R
 import co.edu.udea.compumovil.retrofit.model.Post
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.post_list_content.view.blue_dot
-import kotlinx.android.synthetic.main.post_list_content.view.content
+import kotlinx.android.synthetic.main.post_list_content.view.*
 
 /**
  * Post Adapter class
@@ -46,7 +44,6 @@ class PostAdapter(
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val dot: TextView = view.blue_dot
         val contentView: TextView = view.content
-//        val starView: TextView = view.star
 
         init {
             view.setOnClickListener {
