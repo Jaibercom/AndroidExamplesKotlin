@@ -10,6 +10,10 @@ import co.edu.udea.compumovil.architecture.data.cache.entity.PostEntity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
+/**
+ *
+ * @author jaiber.yepes
+ */
 // Annotates class to be a Room Database with a table (entity) of the Word class
 @Database(entities = [PostEntity::class], version = 1, exportSchema = false)
 abstract class PostDatabase : RoomDatabase() {
@@ -37,7 +41,7 @@ abstract class PostDatabase : RoomDatabase() {
                     PostDatabase::class.java,
                     "post_database"
                 )
-                    .addCallback(WordDatabaseCallback(scope))
+                    .addCallback(PostDatabaseCallback(scope))
                     .build()
 
                 INSTANCE = instance
@@ -46,7 +50,7 @@ abstract class PostDatabase : RoomDatabase() {
         }
     }
 
-    private class WordDatabaseCallback(
+    private class PostDatabaseCallback(
         private val scope: CoroutineScope
     ) : RoomDatabase.Callback() {
 
@@ -61,11 +65,11 @@ abstract class PostDatabase : RoomDatabase() {
 
         suspend fun populateDatabase(postDao: PostDao) {
             // Delete all content here.
-            postDao.deleteAll()
-
-            // Add sample words.
-            val word = PostEntity(id = 1, title = "Hello", body = "body")
-            postDao.insert(word)
+//            postDao.deleteAll()
+//
+//            // Add sample post.
+//            val post = PostEntity(id = 1, title = "Hello", body = "body")
+//            postDao.insert(post)
         }
     }
 }

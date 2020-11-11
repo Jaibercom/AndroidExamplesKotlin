@@ -4,6 +4,10 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import co.edu.udea.compumovil.architecture.presentation.adapter.PostAdapter
 
+/**
+ *
+ * @author jaiber.yepes
+ */
 class SwipeToDeleteCallback(private val mAdapter: PostAdapter) :
     ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
 

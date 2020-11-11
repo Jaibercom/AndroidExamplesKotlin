@@ -19,11 +19,11 @@ import co.edu.udea.compumovil.architecture.presentation.viewmodel.PostViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 
+/**
+ *
+ * @author jaiber.yepes
+ */
 class PostFragment : Fragment(), PostAdapter.OnItemClickListener {
-
-    companion object {
-        fun newInstance() = PostFragment()
-    }
 
     private lateinit var viewModel: PostViewModel
     private lateinit var postAdapter: PostAdapter
@@ -71,7 +71,7 @@ class PostFragment : Fragment(), PostAdapter.OnItemClickListener {
 
     private fun oKListener() = View.OnClickListener {
         Log.d("PostFragment", "Deleting")
-//        viewModel.deletePosts()
+        viewModel.deletePosts()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -82,10 +82,14 @@ class PostFragment : Fragment(), PostAdapter.OnItemClickListener {
         return when (item.itemId) {
             R.id.action_refresh -> {
                 Log.d("PostFragment", "Action refresh")
-//                viewModel.getPosts()
+                viewModel.requestPosts()
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    companion object {
+        fun newInstance() = PostFragment()
     }
 }

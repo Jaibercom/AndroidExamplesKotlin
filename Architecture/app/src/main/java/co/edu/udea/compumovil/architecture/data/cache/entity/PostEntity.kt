@@ -4,6 +4,10 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+/**
+ *
+ * @author jaiber.yepes
+ */
 @Entity(tableName = "post_table")
 data class PostEntity(
 

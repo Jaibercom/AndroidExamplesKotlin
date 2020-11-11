@@ -2,6 +2,10 @@ package co.edu.udea.compumovil.architecture.presentation.model
 
 import com.google.gson.annotations.SerializedName
 
+/**
+ *
+ * @author jaiber.yepes
+ */
 data class Comment(
 
     @SerializedName("id")
