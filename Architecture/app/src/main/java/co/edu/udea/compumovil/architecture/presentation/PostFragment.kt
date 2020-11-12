@@ -47,7 +47,7 @@ class PostFragment : Fragment(), PostAdapter.OnItemClickListener {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(PostViewModel::class.java)
 
-        viewModel.postsLiveData.observe(viewLifecycleOwner, Observer {
+        viewModel.allPosts.observe(viewLifecycleOwner, Observer {
             postAdapter.updatePostList(it)
         })
     }

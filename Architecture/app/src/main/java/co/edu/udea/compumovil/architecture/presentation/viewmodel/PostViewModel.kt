@@ -17,21 +17,14 @@ import kotlinx.coroutines.withContext
 class PostViewModel(application: Application) : AndroidViewModel(application) {
 
     private val repository: DataRepository
-
-//    private var postList = MutableLiveData<List<PostUI>>()
-//    lateinit var postsLiveData: LiveData<List<PostUI>>//postList
-    var postsLiveData: LiveData<List<PostUI>> = MutableLiveData()
-
-    // Other way
-//    var postListLiveData: LiveData<List<PostUI>> = liveData {
-//        emit(repository.getAllPost2())
-//    }
+    var allPosts: LiveData<List<PostUI>> = MutableLiveData()
 
     init {
         val dao = PostDatabase.getDatabase(application, viewModelScope).postDao()
         val apiService = RetrofitFactory.apiService()
-        repository = DataRepository(dao, apiService, viewModelScope)
-        postsLiveData = repository.getAllPost()
+        repository = DataRepository(dao, apiService)
+        allPosts = repository.allPosts
+//        requestPosts()
     }
 
     fun requestPosts() {
@@ -41,11 +34,10 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    private fun requestRemotePosts() {
-//        return withContext(Dispatchers.IO) {
-//            repository.requestRemotePost()
-//        }
-        return repository.requestRemotePost()
+    private suspend fun requestRemotePosts() {
+        return withContext(Dispatchers.IO) {
+            repository.refreshPost()
+        }
     }
 
     /**

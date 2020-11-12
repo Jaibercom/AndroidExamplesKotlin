@@ -3,6 +3,7 @@ package co.edu.udea.compumovil.architecture.data.cache.entity
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import co.edu.udea.compumovil.architecture.presentation.model.PostUI
 
 /**
  *
@@ -22,3 +23,15 @@ data class PostEntity(
     val body: String
 
 )
+
+/**
+ * Map Post to domain entities
+ */
+fun List<PostEntity>.asDomainModel(): List<PostUI> {
+    return map {
+        PostUI(
+            title = it.title,
+            body = it.body
+        )
+    }
+}
