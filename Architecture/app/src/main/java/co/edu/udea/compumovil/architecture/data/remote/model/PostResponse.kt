@@ -1,5 +1,6 @@
 package co.edu.udea.compumovil.architecture.data.remote.model
 
+import co.edu.udea.compumovil.architecture.data.cache.entity.PostEntity
 import com.google.gson.annotations.SerializedName
 
 data class PostResponse(
@@ -17,3 +18,16 @@ data class PostResponse(
     val body: String
 
 )
+
+/**
+ * Map Post to data entities
+ */
+fun List<PostResponse>.asCacheModel(): List<PostEntity> {
+    return map {
+        PostEntity(
+            id = it.id,
+            title = it.title,
+            body = it.body
+        )
+    }
+}

@@ -7,6 +7,7 @@ import co.edu.udea.compumovil.architecture.data.cache.entity.PostEntity
 import co.edu.udea.compumovil.architecture.data.cache.entity.asDomainModel
 import co.edu.udea.compumovil.architecture.data.remote.ApiService
 import co.edu.udea.compumovil.architecture.data.remote.model.PostResponse
+import co.edu.udea.compumovil.architecture.data.remote.model.asCacheModel
 import co.edu.udea.compumovil.architecture.presentation.model.PostUI
 
 /**
@@ -28,21 +29,12 @@ class DataRepository(
         postDao.deleteAll()
     }
 
-    suspend fun refreshPost() {
-        val postResponse = apiService.requestPosts()
-        postDao.insertPosts(postDataMapperRemoteToCache(postResponse))
-    }
-
-    private fun postDataMapperRemoteToCache(postList: List<PostResponse>): List<PostEntity> =
-        postList.map { post ->
-            PostEntity(
-                id = post.id,
-                title = post.title,
-                body = post.body
-            )
-        }.toList()
-
     suspend fun insert(post: PostEntity) {
         postDao.insert(post)
+    }
+
+    suspend fun refreshPost() {
+        val postResponse = apiService.requestPosts()
+        postDao.insertPosts(postResponse.asCacheModel())
     }
 }
