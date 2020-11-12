@@ -1,8 +1,8 @@
 package co.edu.udea.compumovil.architecture.data.remote
 
 import co.edu.udea.compumovil.architecture.data.remote.model.PostResponse
-import co.edu.udea.compumovil.architecture.presentation.model.Comment
-import co.edu.udea.compumovil.architecture.presentation.model.User
+import co.edu.udea.compumovil.architecture.data.remote.model.CommentResponse
+import co.edu.udea.compumovil.architecture.data.remote.model.UserResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -17,8 +17,8 @@ interface ApiService {
     suspend fun requestPosts(): List<PostResponse>
 
     @GET("/users/{id}")
-    suspend fun requestUser(@Path(value = "id") userId: Int): User
+    suspend fun requestUser(@Path(value = "id") userId: Int): UserResponse
 
     @GET("/comments")
-    suspend fun requestComments(@Query(value = "postId") userId: Int): List<Comment>
+    suspend fun requestComments(@Query(value = "postId") userId: Int): List<CommentResponse>
 }

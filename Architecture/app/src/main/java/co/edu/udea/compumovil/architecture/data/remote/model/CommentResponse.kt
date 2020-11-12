@@ -1,4 +1,4 @@
-package co.edu.udea.compumovil.architecture.presentation.model
+package co.edu.udea.compumovil.architecture.data.remote.model
 
 import com.google.gson.annotations.SerializedName
 
@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
  *
  * @author jaiber.yepes
  */
-data class User(
+data class CommentResponse(
 
     @SerializedName("id")
     val id: Int,
@@ -17,9 +17,7 @@ data class User(
     @SerializedName("email")
     val email: String,
 
-    @SerializedName("phone")
-    val phone: String,
+    @SerializedName("body")
+    val body: String
 
-    @SerializedName("website")
-    val website: String
 )

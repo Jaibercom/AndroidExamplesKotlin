@@ -6,7 +6,6 @@ import co.edu.udea.compumovil.architecture.data.cache.dao.PostDao
 import co.edu.udea.compumovil.architecture.data.cache.entity.PostEntity
 import co.edu.udea.compumovil.architecture.data.cache.entity.asDomainModel
 import co.edu.udea.compumovil.architecture.data.remote.ApiService
-import co.edu.udea.compumovil.architecture.data.remote.model.PostResponse
 import co.edu.udea.compumovil.architecture.data.remote.model.asCacheModel
 import co.edu.udea.compumovil.architecture.presentation.model.PostUI
 
