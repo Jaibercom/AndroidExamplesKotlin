@@ -1,2 +1,2 @@
-# CompuMovil
+# Android Exmaples in Kotlin
 In this repo, you can find some examples about Android development
