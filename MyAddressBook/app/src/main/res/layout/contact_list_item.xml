@@ -27,7 +27,6 @@
         android:layout_width="@dimen/thumbnail_size"
         android:layout_height="@dimen/thumbnail_size"
         android:layout_marginBottom="8dp"
-        android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:contentDescription="@string/contact_thumb"
@@ -42,7 +41,6 @@
         android:id="@+id/textview_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:ellipsize="end"
@@ -69,21 +67,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/imageview_thumb"
         app:layout_constraintTop_toBottomOf="@+id/textview_name" />
-
-    <TextView
-        android:id="@+id/textview_phone_number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
-        android:ellipsize="end"
-        android:maxLines="1"
-        tools:text="+57 123456"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="?android:attr/textColorSecondary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/imageview_thumb"
-        app:layout_constraintTop_toBottomOf="@+id/textview_email" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

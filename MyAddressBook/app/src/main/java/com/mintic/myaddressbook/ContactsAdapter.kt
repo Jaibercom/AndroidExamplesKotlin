@@ -12,16 +12,12 @@ class ContactsAdapter(
     private val mContacts: ArrayList<Contact>
 ) : RecyclerView.Adapter<ContactsAdapter.ViewHolder>() {
 
-    override fun onCreateViewHolder(
-        parent: ViewGroup, viewType: Int
-    ): ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.contact_list_item, parent, false)
         return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(
-        holder: ViewHolder, position: Int
-    ) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val (firstName, lastName, email) = mContacts[position]
         val fullName = "$firstName $lastName"
         holder.nameLabel.text = fullName
@@ -35,10 +31,5 @@ class ContactsAdapter(
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var nameLabel: TextView = itemView.findViewById(R.id.textview_name)
         var emailLabel: TextView = itemView.findViewById(R.id.textview_email)
-
-        init {
-//            itemView.setOnClickListener { showAddContactDialog(adapterPosition) }
-
-        }
     }
 }
