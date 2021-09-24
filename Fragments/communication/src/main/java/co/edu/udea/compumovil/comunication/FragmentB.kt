@@ -31,10 +31,13 @@ class FragmentB : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_b, container, false)
-        message = view.findViewById(R.id.text_message)
+        return inflater.inflate(R.layout.fragment_b, container, false)
+    }
 
-        return view
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        message = view.findViewById(R.id.text_message)
     }
 
     override fun onStart() {
