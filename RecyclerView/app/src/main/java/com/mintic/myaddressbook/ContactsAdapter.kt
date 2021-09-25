@@ -9,27 +9,51 @@ import java.util.ArrayList
 
 
 class ContactsAdapter(
-    private val mContacts: ArrayList<Contact>
-) : RecyclerView.Adapter<ContactsAdapter.ViewHolder>() {
+    private val mContacts: ArrayList<Contact>,
+    private val onClick: (Contact) -> Unit
+) : RecyclerView.Adapter<ContactsAdapter.ContactViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.contact_list_item, parent, false)
-        return ViewHolder(view)
+        return ContactViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val (firstName, lastName, email) = mContacts[position]
-        val fullName = "$firstName $lastName"
-        holder.nameLabel.text = fullName
-        holder.emailLabel.text = email
+    override fun onBindViewHolder(holderContact: ContactViewHolder, position: Int) {
+        val contact = mContacts[position]
+        holderContact.bind(contact = contact)
     }
 
     override fun getItemCount(): Int {
         return mContacts.size
     }
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var nameLabel: TextView = itemView.findViewById(R.id.textview_name)
-        var emailLabel: TextView = itemView.findViewById(R.id.textview_email)
+    inner class ContactViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private var nameLabel: TextView = itemView.findViewById(R.id.textview_name)
+        private var emailLabel: TextView = itemView.findViewById(R.id.textview_email)
+        private var imageView: TextView = itemView.findViewById(R.id.imageview_thumb)
+        private var currentContact: Contact? = null
+
+        init {
+            itemView.setOnClickListener {
+                currentContact?.let {
+                    onClick(it)
+                }
+            }
+        }
+
+        /* Bind Contact name and image. */
+        fun bind(contact: Contact) {
+            currentContact = contact
+
+            val fullName = "${contact.firstName} ${contact.lastName}"
+            nameLabel.text = fullName
+            emailLabel.text = contact.email
+
+//            if (contact.image != null) {
+//                imageView.setImageResource(flower.image)
+//            } else {
+//                imageView.setImageResource(R.drawable.rose)
+//            }
+        }
     }
 }
