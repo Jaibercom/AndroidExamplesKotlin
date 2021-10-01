@@ -2,13 +2,12 @@
 
 buildscript {
     ext {
-        kotlin_version = '1.4.10'
-        gradle_version = '4.1.0'
+        kotlin_version = '1.5.31'
+        gradle_version = '7.0.2'
     }
     repositories {
         google()
-        jcenter()
-        
+        mavenCentral()
     }
     dependencies {
         classpath "com.android.tools.build:gradle:$gradle_version"
@@ -22,8 +21,7 @@ buildscript {
 allprojects {
     repositories {
         google()
-        jcenter()
-        
+        mavenCentral()
     }
 }
 

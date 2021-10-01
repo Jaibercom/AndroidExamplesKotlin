@@ -35,11 +35,12 @@ class FragmentA : Fragment() {
      * for more information.
      */
     interface OnFragmentAButtonListener {
-        fun onClickButton(name: String)
+        fun onClickListener(name: String)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         Log.d(TAG, "onCreate")
     }
 
@@ -48,13 +49,15 @@ class FragmentA : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_a, container, false)
+        return inflater.inflate(R.layout.fragment_a, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         editText = view.findViewById(R.id.text_name)
         val sendButton = view.findViewById<FloatingActionButton>(R.id.btn_floating)
         sendButton.setOnClickListener { onClick() }
-
-        return view
     }
 
     private fun onClick() {
@@ -62,7 +65,7 @@ class FragmentA : Fragment() {
         Log.d(TAG, "onClick, your name is: $name")
 
         listener?.let {
-            it.onClickButton(name)
+            it.onClickListener(name)
             editText.setText("")
         }
     }

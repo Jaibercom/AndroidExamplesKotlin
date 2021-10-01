@@ -18,7 +18,7 @@ class FragmentA : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let{
+        arguments?.let {
             count = it.getInt(ARG_COUNT, 0)
         }
     }
@@ -28,7 +28,11 @@ class FragmentA : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_a, container, false)
+        return inflater.inflate(R.layout.fragment_a, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         view.findViewById<Button>(R.id.btn_clear).setOnClickListener { clear() }
         view.findViewById<Button>(R.id.btn_count).setOnClickListener { add() }
@@ -36,7 +40,6 @@ class FragmentA : Fragment() {
         message = view.findViewById(R.id.text_message)
         updateUI()
 
-        return view
     }
 
     private fun add() {
@@ -53,17 +56,14 @@ class FragmentA : Fragment() {
         message.text = requireContext().getString(R.string.text_message, count)
     }
 
-    companion object{
+    companion object {
         const val ARG_COUNT = "count"
 
-        fun newInstance(count: Int): FragmentA {
-            val bundle = Bundle()
-            bundle.putInt(ARG_COUNT, count)
-
-            val frag = FragmentA()
-            frag.arguments = bundle
-
-            return frag
-        }
+        fun newInstance(count: Int): FragmentA =
+            FragmentA().apply {
+                arguments = Bundle().apply {
+                    putInt(ARG_COUNT, count)
+                }
+            }
     }
 }

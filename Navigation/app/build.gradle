@@ -15,11 +15,8 @@
  */
 
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-kapt'
-apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 30
@@ -42,6 +39,10 @@ android {
     buildFeatures {
         dataBinding true
     }
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
 }
 
 dependencies {
@@ -55,5 +56,6 @@ dependencies {
 
     implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
     implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
+    implementation 'androidx.preference:preference:1.1.1'
 
 }

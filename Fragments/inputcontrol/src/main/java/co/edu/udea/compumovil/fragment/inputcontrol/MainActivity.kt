@@ -9,6 +9,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        launchFragment()
+    }
+
+    private fun launchFragment() {
         // Create new fragment and transaction
         val fragmentA = FragmentA.newInstance(146)
         val transaction = supportFragmentManager.beginTransaction()
@@ -25,7 +29,7 @@ class MainActivity : AppCompatActivity() {
 //         val fragment = supportFragmentManager.findFragmentByTag(TAG)
     }
 
-    companion object{
+    companion object {
         const val TAG = "TAG_FRAGMENT_A"
     }
 }
