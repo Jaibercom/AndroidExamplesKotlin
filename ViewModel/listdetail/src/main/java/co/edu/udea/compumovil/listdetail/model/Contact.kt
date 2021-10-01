@@ -1,4 +1,4 @@
-package co.edu.udea.compumovil.listdetail
+package co.edu.udea.compumovil.listdetail.model
 
 data class Contact(
     val firstName: String,

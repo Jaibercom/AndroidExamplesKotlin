@@ -1,10 +1,12 @@
-package co.edu.udea.compumovil.listdetail
+package co.edu.udea.compumovil.listdetail.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import co.edu.udea.compumovil.listdetail.model.Contact
+import co.edu.udea.compumovil.listdetail.R
 import java.util.ArrayList
 
 

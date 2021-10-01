@@ -1,10 +1,11 @@
-package co.edu.udea.compumovil.listdetail
+package co.edu.udea.compumovil.listdetail.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import co.edu.udea.compumovil.listdetail.R
 
 /**
  * A simple [Fragment] subclass.

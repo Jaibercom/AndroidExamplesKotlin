@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/listFragment"
-        android:name="co.edu.udea.compumovil.listdetail.ListFragment"
+        android:name="co.edu.udea.compumovil.listdetail.ui.ListFragment"
         android:label="fragment_list"
         tools:layout="@layout/fragment_list" />
 
