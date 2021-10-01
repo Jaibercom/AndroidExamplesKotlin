@@ -31,6 +31,7 @@ class ListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        recycler = view.findViewById(R.id.contact_list)
         setupRecyclerView()
     }
 
@@ -38,7 +39,7 @@ class ListFragment : Fragment() {
      * Sets up the RecyclerView: empty data set, item dividers, swipe to delete.
      */
     private fun setupRecyclerView() {
-        mContacts = arrayListOf()
+        mContacts = createMockContacts()
         recycler.addItemDecoration(
             DividerItemDecoration(
                 requireContext(),
@@ -55,6 +56,15 @@ class ListFragment : Fragment() {
     /* RecyclerView item is clicked. */
     private fun contactOnClick(contact: Contact) {
         Log.d(TAG, "Click on: $contact")
+    }
+
+    private fun createMockContacts(): ArrayList<Contact> {
+        return arrayListOf(
+            Contact("Jose", "Perez", "jose@gmail.com"),
+            Contact("Natalia", "Perez", "nata@gmail.com"),
+            Contact("Pepito", "Perez", "pepito@gmail.com"),
+            Contact("Juan", "Perez", "juan@gmail.com")
+        )
     }
 
     companion object {
