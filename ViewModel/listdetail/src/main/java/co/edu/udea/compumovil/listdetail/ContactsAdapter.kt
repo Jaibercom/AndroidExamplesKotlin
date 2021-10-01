@@ -1,4 +1,4 @@
-package com.mintic.myaddressbook
+package co.edu.udea.compumovil.listdetail
 
 import android.view.LayoutInflater
 import android.view.View

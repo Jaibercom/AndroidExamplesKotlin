@@ -1,2 +1,3 @@
 rootProject.name='ViewModel'
 include ':counter'
+include ':listdetail'
