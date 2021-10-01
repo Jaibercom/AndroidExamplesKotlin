@@ -2,18 +2,19 @@ package co.edu.udea.compumovil.listdetail.ui
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
-import co.edu.udea.compumovil.listdetail.model.Contact
-import co.edu.udea.compumovil.listdetail.adapter.ContactsAdapter
 import co.edu.udea.compumovil.listdetail.R
-import java.util.ArrayList
-import androidx.lifecycle.ViewModelProvider
+import co.edu.udea.compumovil.listdetail.adapter.ContactsAdapter
+import co.edu.udea.compumovil.listdetail.model.Contact
 import co.edu.udea.compumovil.listdetail.viewmodel.ContactViewModel
+import java.util.ArrayList
 
 
 /**
@@ -64,6 +65,8 @@ class ListFragment : Fragment() {
     /* RecyclerView item is clicked. */
     private fun contactOnClick(contact: Contact) {
         Log.d(TAG, "Click on: $contact")
+        model.select(contact)
+        findNavController().navigate(R.id.action_listFragment_to_detailFragment)
     }
 
     private fun createMockContacts(): ArrayList<Contact> {

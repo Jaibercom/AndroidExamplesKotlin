@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import co.edu.udea.compumovil.listdetail.R
@@ -15,6 +16,7 @@ import co.edu.udea.compumovil.listdetail.viewmodel.ContactViewModel
 class DetailFragment : Fragment() {
 
     private lateinit var model: ContactViewModel
+    private lateinit var nameView: TextView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,6 +29,15 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        nameView = view.findViewById(R.id.name_text)
         model = ViewModelProvider(requireActivity()).get(ContactViewModel::class.java)
+        observeLiveData()
+    }
+
+    private fun observeLiveData() {
+        model.getSelected().observe(viewLifecycleOwner, { contact ->
+            val fullName = "Su nombre es: \n${contact.firstName} ${contact.lastName}"
+            nameView.text = fullName
+        })
     }
 }
