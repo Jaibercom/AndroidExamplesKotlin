@@ -12,6 +12,8 @@ import co.edu.udea.compumovil.listdetail.model.Contact
 import co.edu.udea.compumovil.listdetail.adapter.ContactsAdapter
 import co.edu.udea.compumovil.listdetail.R
 import java.util.ArrayList
+import androidx.lifecycle.ViewModelProvider
+import co.edu.udea.compumovil.listdetail.viewmodel.ContactViewModel
 
 
 /**
@@ -22,6 +24,7 @@ class ListFragment : Fragment() {
     private lateinit var mContacts: ArrayList<Contact>
     private lateinit var mAdapter: ContactsAdapter
     private lateinit var recycler: RecyclerView
+    private lateinit var model: ContactViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,6 +36,8 @@ class ListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        model = ViewModelProvider(requireActivity()).get(ContactViewModel::class.java)
 
         recycler = view.findViewById(R.id.contact_list)
         setupRecyclerView()
