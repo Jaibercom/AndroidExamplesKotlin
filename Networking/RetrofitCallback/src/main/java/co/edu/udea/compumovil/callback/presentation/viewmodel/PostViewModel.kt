@@ -16,12 +16,12 @@ class PostViewModel : ViewModel() {
     private var posts = MutableLiveData<List<Post>>()
     private var isFailure = MutableLiveData(false)
 
-    fun getPosts(): LiveData<List<Post>> = posts
-    fun getIsFailure(): LiveData<Boolean> = isFailure
-
     init {
         requestPosts()
     }
+
+    fun getPosts(): LiveData<List<Post>> = posts
+    fun getIsFailure(): LiveData<Boolean> = isFailure
 
     fun requestPosts() {
         val call = apiService.requestPosts()

@@ -10,27 +10,22 @@ import kotlinx.coroutines.withContext
 class PostViewModel : ViewModel() {
 
     private var apiService = RetrofitFactory.apiService()
-
     private var posts = MutableLiveData<List<Post>>()
-    var postsLiveData: LiveData<List<Post>> = posts
-
-    // Other way
-//    var postListLiveData: LiveData<List<Post>> = liveData {
-//        emit(requestPosts())
-//    }
 
     init {
-        getPosts()
+        requestPosts()
     }
 
-    fun getPosts() {
+    fun getPosts(): LiveData<List<Post>> = posts
+
+    fun requestPosts() {
         // Coroutine that will be canceled when the ViewModel is cleared.
         viewModelScope.launch {
-            posts.value = requestPosts()
+            posts.value = requestSuspendPosts()
         }
     }
 
-    private suspend fun requestPosts(): List<Post> {
+    private suspend fun requestSuspendPosts(): List<Post> {
         return withContext(Dispatchers.IO) {
             apiService.requestPosts()
         }
