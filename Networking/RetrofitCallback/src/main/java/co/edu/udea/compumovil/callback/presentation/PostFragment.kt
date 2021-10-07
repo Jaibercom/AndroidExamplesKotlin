@@ -9,7 +9,6 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
@@ -19,11 +18,8 @@ import co.edu.udea.compumovil.callback.presentation.viewmodel.PostViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 
-class PostFragment : Fragment(), PostAdapter.OnItemClickListener {
 
-    companion object {
-        fun newInstance() = PostFragment()
-    }
+class PostFragment : Fragment(), PostAdapter.OnItemClickListener {
 
     private lateinit var viewModel: PostViewModel
     private lateinit var postAdapter: PostAdapter
@@ -43,12 +39,16 @@ class PostFragment : Fragment(), PostAdapter.OnItemClickListener {
         return view
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(PostViewModel::class.java)
-
-        viewModel.postsLiveData.observe(viewLifecycleOwner, Observer {
+        viewModel.getPosts().observe(viewLifecycleOwner, {
             postAdapter.updatePostList(it)
+        })
+        viewModel.getIsFailure().observe(viewLifecycleOwner, {
+            if (it) {
+                Log.d(TAG, "Request failed")
+            }
         })
     }
 
@@ -66,7 +66,8 @@ class PostFragment : Fragment(), PostAdapter.OnItemClickListener {
 
     private fun onDeleteClick() = View.OnClickListener { view ->
         Snackbar.make(view, "Delete?", Snackbar.LENGTH_LONG)
-            .setAction("OK", oKListener()).show()
+            .setAction("OK", oKListener())
+            .show()
     }
 
     private fun oKListener() = View.OnClickListener {
@@ -82,10 +83,15 @@ class PostFragment : Fragment(), PostAdapter.OnItemClickListener {
         return when (item.itemId) {
             R.id.action_refresh -> {
                 Log.d("PostFragment", "Action refresh")
-                viewModel.getPosts()
+                viewModel.requestPosts()
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    companion object {
+        private const val TAG = "PostFragment"
+        fun newInstance() = PostFragment()
     }
 }
