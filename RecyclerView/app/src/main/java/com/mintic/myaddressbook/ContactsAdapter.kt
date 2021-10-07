@@ -1,15 +1,19 @@
 package com.mintic.myaddressbook
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import java.util.ArrayList
 
 
 class ContactsAdapter(
     private val mContacts: ArrayList<Contact>,
+    private val context: Context,
     private val onClick: (Contact) -> Unit
 ) : RecyclerView.Adapter<ContactsAdapter.ContactViewHolder>() {
 
@@ -30,7 +34,7 @@ class ContactsAdapter(
     inner class ContactViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private var nameLabel: TextView = itemView.findViewById(R.id.textview_name)
         private var emailLabel: TextView = itemView.findViewById(R.id.textview_email)
-//        private var imageView: TextView = itemView.findViewById(R.id.imageview_thumb)
+        private var imageView: ImageView = itemView.findViewById(R.id.imageview_thumb)
         private var currentContact: Contact? = null
 
         init {
@@ -49,11 +53,9 @@ class ContactsAdapter(
             nameLabel.text = fullName
             emailLabel.text = contact.email
 
-//            if (contact.image != null) {
-//                imageView.setImageResource(flower.image)
-//            } else {
-//                imageView.setImageResource(R.drawable.rose)
-//            }
+            Glide.with(context)
+                .load(contact.imageUrl)
+                .into(imageView)
         }
     }
 }

@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
                 DividerItemDecoration.VERTICAL
             )
         )
-        mAdapter = ContactsAdapter(mContacts) { contact ->
+        mAdapter = ContactsAdapter(mContacts, this) { contact ->
             contactOnClick(contact)
         }
 
@@ -62,7 +62,8 @@ class MainActivity : AppCompatActivity() {
                 val contact = Contact(
                     contactJson.getString("first_name"),
                     contactJson.getString("last_name"),
-                    contactJson.getString("email")
+                    contactJson.getString("email"),
+                    contactJson.getString("imageUrl")
                 )
                 Log.d(TAG, "generateContacts: $contact")
                 mContacts.add(contact)
@@ -98,10 +99,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun createMockContacts(): ArrayList<Contact> {
         return arrayListOf(
-            Contact("Jose", "Perez", "jose@gmail.com"),
-            Contact("Jose", "Perez", "jose@gmail.com"),
-            Contact("Jose", "Perez", "jose@gmail.com"),
-            Contact("Juan", "Perez", "juan@gmail.com")
+            Contact("Jose", "Perez", "jose@gmail.com", ""),
+            Contact("Jose", "Perez", "jose@gmail.com", ""),
+            Contact("Jose", "Perez", "jose@gmail.com", ""),
+            Contact("Juan", "Perez", "juan@gmail.com", "")
         )
     }
 

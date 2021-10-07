@@ -2,16 +2,19 @@
   {
     "first_name": "Kort",
     "last_name": "Wickliffe",
-    "email": "kwickliffe0@orciconsectetuer.com"
+    "email": "kwickliffe0@orciconsectetuer.com",
+    "imageUrl": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png"
   },
   {
     "first_name": "Bernard",
     "last_name": "Tudbald",
-    "email": "btudbald1@nonummyipsum.co.uk"
+    "email": "btudbald1@nonummyipsum.co.uk",
+    "imageUrl": "https://static.vecteezy.com/system/resources/previews/000/496/450/non_2x/vector-users-icon-design.jpg"
   },
   {
     "first_name": "Kaleb",
     "last_name": "Nuccitelli",
-    "email": "knuccitelli2@uncsollicitudin.edu"
+    "email": "knuccitelli2@uncsollicitudin.edu",
+    "imageUrl": "https://img2.freepng.es/20180405/cce/kisspng-computer-icons-icon-design-avatar-5ac66832d44b93.1745920615229522428696.jpg"
   }
 ]
