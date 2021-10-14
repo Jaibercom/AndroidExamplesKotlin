@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import co.edu.udea.compumovil.coroutine.R
 import co.edu.udea.compumovil.coroutine.model.Post
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.post_list_content.view.*
 
 /**
  * Post Adapter class
@@ -42,8 +41,8 @@ class PostAdapter(
     override fun getItemCount() = postList.size
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val dot: TextView = view.blue_dot
-        val contentView: TextView = view.content
+        val dot: TextView = view.findViewById(R.id.blue_dot)
+        val contentView: TextView = view.findViewById(R.id.content)
 
         init {
             view.setOnClickListener {

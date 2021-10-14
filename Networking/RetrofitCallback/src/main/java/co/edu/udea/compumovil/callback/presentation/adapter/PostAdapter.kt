@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import co.edu.udea.compumovil.callback.R
 import co.edu.udea.compumovil.callback.model.Post
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.post_list_content.view.*
 
 /**
  * Post Adapter class
@@ -27,9 +26,7 @@ class PostAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.post_list_content, parent, false)
-
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.post_list_content, parent, false)
         return ViewHolder(view)
     }
 
@@ -42,8 +39,8 @@ class PostAdapter(
     override fun getItemCount() = postList.size
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val dot: TextView = view.blue_dot
-        val contentView: TextView = view.content
+        val dot: TextView = view.findViewById(R.id.blue_dot)
+        val contentView: TextView = view.findViewById(R.id.content)
 
         init {
             view.setOnClickListener {

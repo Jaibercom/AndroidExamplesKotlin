@@ -13,15 +13,17 @@ import retrofit2.Response
 class PostViewModel : ViewModel() {
 
     private var apiService = RetrofitFactory.apiService()
-
     private var posts = MutableLiveData<List<Post>>()
-    var postsLiveData: LiveData<List<Post>> = posts
+    private var isFailure = MutableLiveData(false)
 
     init {
-        getPosts()
+        requestPosts()
     }
 
-    fun getPosts() {
+    fun getPosts(): LiveData<List<Post>> = posts
+    fun getIsFailure(): LiveData<Boolean> = isFailure
+
+    fun requestPosts() {
         val call = apiService.requestPosts()
         call.enqueue(object : Callback<List<Post>?> {
             override fun onResponse(call: Call<List<Post>?>, response: Response<List<Post>?>) {
@@ -30,6 +32,7 @@ class PostViewModel : ViewModel() {
 
             override fun onFailure(call: Call<List<Post>?>, t: Throwable) {
                 // todo deal with the failed network request
+                isFailure.value = true
             }
         })
     }

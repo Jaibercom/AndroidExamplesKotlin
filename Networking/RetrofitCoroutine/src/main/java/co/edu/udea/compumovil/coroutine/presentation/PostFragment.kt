@@ -43,11 +43,12 @@ class PostFragment : Fragment(), PostAdapter.OnItemClickListener {
         return view
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         viewModel = ViewModelProvider(this).get(PostViewModel::class.java)
 
-        viewModel.postsLiveData.observe(viewLifecycleOwner, Observer {
+        viewModel.getPosts().observe(viewLifecycleOwner, {
             postAdapter.updatePostList(it)
         })
     }
@@ -82,7 +83,7 @@ class PostFragment : Fragment(), PostAdapter.OnItemClickListener {
         return when (item.itemId) {
             R.id.action_refresh -> {
                 Log.d("PostFragment", "Action refresh")
-                viewModel.getPosts()
+                viewModel.requestPosts()
                 true
             }
             else -> super.onOptionsItemSelected(item)
