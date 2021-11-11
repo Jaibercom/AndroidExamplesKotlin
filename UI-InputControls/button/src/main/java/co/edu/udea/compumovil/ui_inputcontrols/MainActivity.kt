@@ -21,11 +21,9 @@ class MainActivity : AppCompatActivity() {
     fun onClick(view: View) {
 
         when (view.id) {
-
             R.id.btn_count -> {
                 count++
             }
-
             R.id.btn_clear -> {
                 count = 0
             }
