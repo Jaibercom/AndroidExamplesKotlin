@@ -1,5 +1,6 @@
 package com.mintic.myaddressbook
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -47,6 +48,19 @@ class ListActivity : AppCompatActivity() {
     /* RecyclerView item is clicked. */
     private fun contactOnClick(contact: Contact?) {
         Log.d(TAG, "Click on: $contact")
+        contact?.let {
+            navigateToDetail(it)
+        }
+    }
+
+    private fun navigateToDetail(contact: Contact) {
+        val intent = Intent(this, DetailActivity::class.java).apply {
+            putExtra(KEY_NAME, contact.firstName)
+            putExtra(KEY_LAST_NAME, contact.lastName)
+            putExtra(KEY_CONTACT, contact)
+        }
+
+        startActivity(intent)
     }
 
     /**
@@ -108,5 +122,8 @@ class ListActivity : AppCompatActivity() {
 
     companion object {
         private val TAG = ListActivity::class.java.simpleName
+        const val KEY_NAME = "contact_extra_name"
+        const val KEY_LAST_NAME = "contact_extra_last_name"
+        const val KEY_CONTACT = "contact_extra"
     }
 }
