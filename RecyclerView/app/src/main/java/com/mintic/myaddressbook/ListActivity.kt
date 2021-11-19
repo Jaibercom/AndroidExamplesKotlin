@@ -37,13 +37,15 @@ class ListActivity : AppCompatActivity() {
                 DividerItemDecoration.VERTICAL
             )
         )
-        mAdapter = ContactAdapter(mContacts, this)
+        mAdapter = ContactAdapter(mContacts, this) { contact ->
+            contactOnClick(contact)
+        }
 
         recycler.adapter = mAdapter
     }
 
     /* RecyclerView item is clicked. */
-    private fun contactOnClick(contact: Contact) {
+    private fun contactOnClick(contact: Contact?) {
         Log.d(TAG, "Click on: $contact")
     }
 
