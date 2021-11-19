@@ -11,11 +11,10 @@ import com.bumptech.glide.Glide
 import java.util.ArrayList
 
 
-class ContactsAdapter(
+class ContactAdapter(
     private val mContacts: ArrayList<Contact>,
-    private val context: Context,
-    private val onClick: (Contact) -> Unit
-) : RecyclerView.Adapter<ContactsAdapter.ContactViewHolder>() {
+    private val context: Context
+) : RecyclerView.Adapter<ContactAdapter.ContactViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.contact_list_item, parent, false)
@@ -38,11 +37,11 @@ class ContactsAdapter(
         private var currentContact: Contact? = null
 
         init {
-            itemView.setOnClickListener {
-                currentContact?.let {
-                    onClick(it)
-                }
-            }
+//            itemView.setOnClickListener {
+//                currentContact?.let {
+//                    onClick(it)
+//                }
+//            }
         }
 
         /* Bind Contact name and image. */
