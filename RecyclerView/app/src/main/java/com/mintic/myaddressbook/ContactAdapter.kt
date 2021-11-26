@@ -40,7 +40,7 @@ class ContactAdapter(
 
         init {
             itemView.setOnClickListener {
-                Log.d(TAG, "itemView OnClick")
+                Log.d(TAG, "itemView OnClick: ${currentContact?.firstName}")
                 onClick(currentContact)
             }
         }
@@ -59,7 +59,7 @@ class ContactAdapter(
         }
     }
 
-    companion object{
+    companion object {
         private const val TAG = "ContactAdapter"
     }
 }
