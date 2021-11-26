@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="co.edu.udea.compumovil.comunication.FragmentA">
+    tools:context="co.edu.udea.compumovil.comunication.InputNameFragment">
 
     <EditText
         android:id="@+id/text_name"

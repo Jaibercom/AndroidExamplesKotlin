@@ -9,14 +9,14 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView"
-        android:name="co.edu.udea.compumovil.comunication.FragmentA"
+        android:name="co.edu.udea.compumovil.comunication.InputNameFragment"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="match_parent" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView2"
-        android:name="co.edu.udea.compumovil.comunication.FragmentB"
+        android:name="co.edu.udea.compumovil.comunication.ViewNameFragment"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="match_parent" />

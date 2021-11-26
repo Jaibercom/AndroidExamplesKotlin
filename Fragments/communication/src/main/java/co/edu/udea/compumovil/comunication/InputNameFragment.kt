@@ -13,12 +13,12 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 /**
  * A simple [Fragment] subclass.
  * Activities that contain this fragment must implement the
- * [FragmentA.OnFragmentAButtonListener] interface
+ * [InputNameFragment.OnFragmentAButtonListener] interface
  * to handle interaction events.
- * Use the [FragmentA.newInstance] factory method to
+ * Use the [InputNameFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class FragmentA : Fragment() {
+class InputNameFragment : Fragment() {
 
     private var listener: OnFragmentAButtonListener? = null
     private lateinit var editText: EditText
@@ -96,6 +96,6 @@ class FragmentA : Fragment() {
          * @return A new instance of fragment FragmentA.
          */
         @JvmStatic
-        fun newInstance() = FragmentA()
+        fun newInstance() = InputNameFragment()
     }
 }

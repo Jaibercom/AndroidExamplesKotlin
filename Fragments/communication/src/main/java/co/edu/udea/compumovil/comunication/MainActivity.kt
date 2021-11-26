@@ -5,10 +5,9 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
-import co.edu.udea.compumovil.comunication.FragmentA.Companion.FRAGMENT_A_TAG
-import co.edu.udea.compumovil.comunication.FragmentA.OnFragmentAButtonListener
-import co.edu.udea.compumovil.comunication.FragmentB.Companion.FRAGMENT_B_TAG
-
+import co.edu.udea.compumovil.comunication.InputNameFragment.Companion.FRAGMENT_A_TAG
+import co.edu.udea.compumovil.comunication.InputNameFragment.OnFragmentAButtonListener
+import co.edu.udea.compumovil.comunication.ViewNameFragment.Companion.FRAGMENT_B_TAG
 
 /**
  * A simple [Activity] subclass.
@@ -21,7 +20,7 @@ class MainActivity : AppCompatActivity(), OnFragmentAButtonListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val fragmentA = FragmentA.newInstance()
+        val fragmentA = InputNameFragment.newInstance()
 
         navigateTo(fragmentA, FRAGMENT_A_TAG)
     }
@@ -29,14 +28,14 @@ class MainActivity : AppCompatActivity(), OnFragmentAButtonListener {
     override fun onClickListener(name: String) {
         Log.d(TAG, "onClick, your name is: $name")
 
-        var fragmentB = supportFragmentManager.findFragmentByTag(FRAGMENT_B_TAG) as FragmentB?
+        var fragmentB = supportFragmentManager.findFragmentByTag(FRAGMENT_B_TAG) as ViewNameFragment?
 
         if (fragmentB != null) {
             Log.d(TAG, "Fragment B creado")
             fragmentB.setName(name)
         } else {
             Log.d(TAG, "Crear Fragment B")
-            fragmentB = FragmentB.newInstance(name)
+            fragmentB = ViewNameFragment.newInstance(name)
         }
 
         navigateTo(fragmentB, FRAGMENT_B_TAG, true)

@@ -10,10 +10,10 @@ import androidx.fragment.app.Fragment
 
 /**
  * A simple [Fragment] subclass.
- * Use the [FragmentB.newInstance] factory method to
+ * Use the [ViewNameFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class FragmentB : Fragment() {
+class ViewNameFragment : Fragment() {
 
     private lateinit var message: TextView
     private lateinit var name: String
@@ -76,7 +76,7 @@ class FragmentB : Fragment() {
          */
         @JvmStatic
         fun newInstance(name: String) =
-            FragmentB().apply {
+            ViewNameFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_NAME, name)
                 }

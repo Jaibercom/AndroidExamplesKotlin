@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun launchFragment() {
         // Create new fragment and transaction
-        val fragmentA = FragmentA.newInstance(146)
+        val fragmentA = FragmentA.newInstance(45)
         val transaction = supportFragmentManager.beginTransaction()
 
         transaction.apply {
