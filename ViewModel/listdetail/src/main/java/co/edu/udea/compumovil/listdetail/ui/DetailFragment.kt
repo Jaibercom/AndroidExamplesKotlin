@@ -35,8 +35,7 @@ class DetailFragment : Fragment() {
     }
 
     private fun observeLiveData() {
-        model.getSelected().observe(viewLifecycleOwner, { contact ->
-            val fullName = "Su nombre es: \n${contact.firstName} ${contact.lastName}"
+        model.getNameSelected().observe(viewLifecycleOwner, { fullName ->
             nameView.text = fullName
         })
     }

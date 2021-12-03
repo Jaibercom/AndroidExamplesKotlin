@@ -5,15 +5,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import co.edu.udea.compumovil.listdetail.model.Contact
 import co.edu.udea.compumovil.listdetail.R
-import java.util.ArrayList
+import co.edu.udea.compumovil.listdetail.model.Contact
 
 
 class ContactsAdapter(
-    private val mContacts: ArrayList<Contact>,
     private val onClick: (Contact) -> Unit
 ) : RecyclerView.Adapter<ContactsAdapter.ContactViewHolder>() {
+
+    private var mContacts = mutableListOf<Contact>()
+
+    fun setContactList(mContacts: MutableList<Contact>) {
+        this.mContacts = mContacts
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.contact_list_item, parent, false)
@@ -32,7 +36,7 @@ class ContactsAdapter(
     inner class ContactViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private var nameLabel: TextView = itemView.findViewById(R.id.textview_name)
         private var emailLabel: TextView = itemView.findViewById(R.id.textview_email)
-//        private var imageView: TextView = itemView.findViewById(R.id.imageview_thumb)
+
         private var currentContact: Contact? = null
 
         init {
@@ -50,12 +54,6 @@ class ContactsAdapter(
             val fullName = "${contact.firstName} ${contact.lastName}"
             nameLabel.text = fullName
             emailLabel.text = contact.email
-
-//            if (contact.image != null) {
-//                imageView.setImageResource(flower.image)
-//            } else {
-//                imageView.setImageResource(R.drawable.rose)
-//            }
         }
     }
 }
